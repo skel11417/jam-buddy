@@ -10,7 +10,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_25_212935) do
+ActiveRecord::Schema.define(version: 2019_03_25_213700) do
+
+  create_table "band_genres", force: :cascade do |t|
+    t.integer "band_id"
+    t.integer "genre_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "bands", force: :cascade do |t|
+    t.string "musician_id"
+    t.string "name"
+    t.string "image_url"
+    t.string "status"
+    t.string "link"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "genre_musicians", force: :cascade do |t|
+    t.integer "genre_id"
+    t.integer "musician_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "genres", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "instrument_musicians", force: :cascade do |t|
     t.integer "musician_id"
