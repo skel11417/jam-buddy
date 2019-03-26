@@ -1,0 +1,11 @@
+<%= form_for @opening do |f| %>
+  <%= f.hidden_field :band_id, value: @band.id %>  <%# REPLACE WITH OTHER %>
+  <%= f.label :instrument, "Wanted: " %>
+  <%= f.collection_select :instrument_id, Instrument.all, :id, :name %>
+  <%= f.label :commitment %>
+  <%= f.select :commitment, ["single gigs", "jams", "full-time band", "part-time band", "session_work"] %>
+  <br>
+  <%= f.label :description %>
+  <%= f.text_area :description %>
+  <%= f.submit "Post Opening" %>
+<% end %>

@@ -1,10 +1,2 @@
 <h1>New Band</h1>
-<%= form_for @band do |f|%>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
-  <%= f.label :image_url %>
-  <%= f.text_field :image_url %>
-  <%= f.label :status %>
-  <%= f.select :status, {"Jamming" => "Jamming", "On Tour"=> "On Tour", "In Studio"=>"In Studio"}  %>
-  <%= f.submit "Create Band" %>
-<% end %>
+<%= render "band_form" %>

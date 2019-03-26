@@ -1,5 +1,5 @@
-<h1>Bands#index</h1>
+<h1>All bands</h1>
 <ul><% @bands.each do |band| %>
-    <li><%= link_to band.name, band_path(band) %></li>
+    <li><%= link_to band.name, band_path(band.id) %></li>
   <% end %>
 </ul>

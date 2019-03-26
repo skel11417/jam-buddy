@@ -9,6 +9,7 @@ class BandsController < ApplicationController
 
   def new
     @band = Band.new
+    @band.musician = Musician.all.sample  #This should be the user, but for now it will be a random manager
   end
 
   def create
@@ -25,7 +26,7 @@ class BandsController < ApplicationController
     redirect_to @band
   end
 
-  def delete
+  def destroy
     get_band.destroy
     redirect_to bands_path
   end
@@ -33,10 +34,10 @@ class BandsController < ApplicationController
   private
 
   def get_band
-    @band = Band.find[params[:id]]
+    @band = Band.find(params[:id])
   end
 
   def get_params
-    params.require(:band).permit(:musician_id, :name, :image_url, :status, :link)
+    params.require(:band).permit(:musician_id, :name, :image_url, :status, :link, :location)
   end
 end

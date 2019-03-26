@@ -1,0 +1,11 @@
+<h1>Wanted: </h1>
+<p>Band: <%= link_to @opening.band.name, band_path(@opening.band) %></p>
+<p>Role: <%= @opening.instrument.name %></p>
+<p>Commitment: <%= @opening.commitment %></p>
+<p>Description: <%= @opening.description %></p>
+<%# USER OPTIONS %>
+<%= form_tag opening_path(@opening), method: :get do%>
+  <%= submit_tag "Edit Opening" %>
+<% end %>
+<%# MUSICIAN OPTIONS %>
+<%# APPLY %>

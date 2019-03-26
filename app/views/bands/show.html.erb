@@ -1,7 +1,22 @@
 <h1><%= @band.name %></h1>
 <img src="<%= @band.image_url %>" alt="Photo Not Available"> <br>
 <p>Manager: <%= link_to @band.musician.name, musician_path(@band.musician_id) %></p>
-<br>
+<p>Location: <%= @band.location %></p>
 <p>Status: <%= @band.status %></p>
+<p>Openings: </p>
+<ul>
+  <% Opening.all.select {|o| o.band_id == @band.id}.each do |opening| %>
+    <li><%= link_to "Wanted: #{opening.instrument.name} (#{opening.commitment})", opening_path(opening)%></li>
+  <% end %>
+</ul>
+<%= link_to @band.link, @band.link %> <%# HOW DO EXTERNAL LINKS WORK %>
 <br>
-<p><%= link_to "Link", @band.link %></p>
+<br>
+<%# USER OPTIONS %>
+<%= button_to "Edit This Band", edit_band_path(@band), method: :get %>
+<br>
+<%= button_to "Create New Opening", new_opening_path(@band.id), method: :get  %>
+<br>
+<%= form_tag band_path(@band), method: :delete do %>
+  <%= submit_tag "Delete this Band"%>
+<% end %>
