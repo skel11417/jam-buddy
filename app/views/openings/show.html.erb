@@ -4,8 +4,9 @@
 <p>Commitment: <%= @opening.commitment %></p>
 <p>Description: <%= @opening.description %></p>
 <%# USER OPTIONS %>
-<%= form_tag opening_path(@opening), method: :get do%>
-  <%= submit_tag "Edit Opening" %>
+<%= button_to "Edit Opening", opening_path(@opening), method: :get %>
+<%= form_tag opening_path(@opening), method: :delete do  %>
+  <%= submit_tag "Remove Opening" %>
 <% end %>
 <%# MUSICIAN OPTIONS %>
 <%# APPLY %>

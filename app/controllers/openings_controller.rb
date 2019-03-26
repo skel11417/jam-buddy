@@ -27,7 +27,9 @@ class OpeningsController < ApplicationController
   end
 
   def destroy
-    get_opening
+    @band = get_opening.band
+    get_opening.destroy
+    redirect_to @band
   end
 
   private
