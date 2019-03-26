@@ -14,6 +14,9 @@ class BandsController < ApplicationController
 
   def create
     @band = Band.create(get_params)
+    params[:band][:genre_ids].each do |g|
+      @band.genres << Genre.find(g)
+    end
     redirect_to @band
   end
 
@@ -38,6 +41,6 @@ class BandsController < ApplicationController
   end
 
   def get_params
-    params.require(:band).permit(:musician_id, :name, :image_url, :status, :link, :location)
+    params.require(:band).permit(:musician_id, :name, :image_url, :status, :link, :location, :genre_ids => [])
   end
 end

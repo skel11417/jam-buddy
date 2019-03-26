@@ -1,5 +1,5 @@
 <%= form_for @opening do |f| %>
-  <%= f.hidden_field :band_id, value: @band.id %>  <%# REPLACE WITH OTHER %>
+  <%= f.hidden_field :band_id, value: @opening.band.id %>  <%# REPLACE WITH OTHER %>
   <%= f.label :instrument, "Wanted: " %>
   <%= f.collection_select :instrument_id, Instrument.all, :id, :name %>
   <%= f.label :commitment %>

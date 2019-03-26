@@ -9,7 +9,7 @@ class OpeningsController < ApplicationController
 
   def new
     @opening = Opening.new
-    @band = Band.find(params[:band_id])
+    @opening.band = Band.find(params[:band_id])
   end
 
   def create
@@ -22,7 +22,8 @@ class OpeningsController < ApplicationController
   end
 
   def update
-    @opening = Opening.update(get_params)
+    get_opening
+    @opening.update(get_params)
     redirect_to @opening
   end
 

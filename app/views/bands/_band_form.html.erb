@@ -8,6 +8,7 @@
   <%= f.text_field :image_url %>
   <%= f.label :status %>
   <%= f.select :status,  ["single gigs", "jams", "full-time band", "part-time band", "session work"] %>
+  <%= f.collection_check_boxes :genre_ids, Genre.all, :id, :name %>
   <%= f.label :link %>
   <%= f.text_field :link %>
   <%= f.submit %>
