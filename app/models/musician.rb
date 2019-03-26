@@ -6,4 +6,16 @@ class Musician < ApplicationRecord
   has_many :bands
   has_many :requests
   has_many :openings, through: :requests
+
+  def print_instruments
+    if has_instruments?
+      self.instruments.map {|instrument| instrument.name}.join(", ")
+    else
+      ""
+    end
+  end
+
+  def has_instruments?
+    self.instruments.any?
+  end
 end

@@ -1,2 +1,16 @@
-<h1>Musicians#show</h1>
-<p>Find me in app/views/musicians/show.html.erb</p>
+<h1><%= @musician.name %></h1>
+  <%= image_tag @musician.image_url, size: "200x200", alt: "Musician Profile Picture" %>
+<a href="/edit"><%= link_to "Edit", edit_musician_path %></a>
+<p><em><%= @musician.print_instruments %></em></p>
+<h3>(Ready to gig)</h3>
+  <h4>Message Me</h4>
+
+  <ul>Plays:
+    <% @musician.genres.each do |genre| %>
+      <li><%= genre.name %></li>
+      <% end %>
+  </ul>
+  <h4>Links:</h4>
+  <div class="">
+    soundcloud, spotify, bandcamp, official website
+  </div>

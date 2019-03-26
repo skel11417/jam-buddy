@@ -1,10 +1,10 @@
 class MusiciansController < ApplicationController
+  before_action :get_musician, only: [:show, :edit]
   def index
     @musicians = Musician.all
   end
 
   def show
-    get_musician
   end
 
   def new
@@ -17,7 +17,6 @@ class MusiciansController < ApplicationController
   end
 
   def edit
-    get_musician
   end
 
   def update
@@ -33,7 +32,7 @@ class MusiciansController < ApplicationController
   private
 
   def get_musician
-    @musician = Musician.find[params[:id]]
+    @musician = Musician.find(params[:id])
   end
 
   def get_params

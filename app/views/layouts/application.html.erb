@@ -10,6 +10,18 @@
   </head>
 
   <body>
+    <nav class="navbar">
+    <tr>
+      <td> #username </td>
+      <td><%= link_to "Home", '/' %></td>
+      <td>Profile</td>
+      <td>Find a Gig</td>
+      <td><%= link_to "Musicians", musicians_path %></td>
+      <td><%= link_to "Bands", bands_path %></td>
+      <td>Notifications</td>
+      <td>Log out</td>
+      </tr>
+    </nav>
     <%= yield %>
   </body>
 </html>
