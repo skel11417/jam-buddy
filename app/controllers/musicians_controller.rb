@@ -12,7 +12,7 @@ class MusiciansController < ApplicationController
   end
 
   def create
-    @musician = Musician.create(get_params) #configure strong params
+    @musician = Musician.create(musician_params) #configure strong params
     redirect_to @musician
   end
 
@@ -20,8 +20,8 @@ class MusiciansController < ApplicationController
   end
 
   def update
-    get_musician.update(get_params)
-    redirect_to @musician
+    get_musician.update(musician_params)
+    redirect_to @musician, notice: "Your profile has been updated."
   end
 
   def delete
@@ -35,7 +35,7 @@ class MusiciansController < ApplicationController
     @musician = Musician.find(params[:id])
   end
 
-  def get_params
-    params.require(:musician).permit(:name, :bio, :availability, :location)
+  def musician_params
+    params.require(:musician).permit(:name, :bio, :image_url, :availability, :location, instrument_ids:[], genre_ids:[])
   end
 end

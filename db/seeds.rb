@@ -1,5 +1,6 @@
 random_names = Faker::Name
 
+default_user_image = "http://lorempixel.com/400/200"
 
 Instrument.destroy_all
 Genre.destroy_all
@@ -27,8 +28,11 @@ genres.each {|genre| Genre.create(name: genre)}
 
 # Create Musician
 50.times do
-  Musician.create(name: random_names.name, bio: Faker::Lorem.paragraph, availabiity: availabilities.sample,
-    image_url: "http://lorempixel.com/400/200", location: Faker::Address.city)
+  Musician.create(name: random_names.name,
+    bio: Faker::Lorem.paragraph,
+    availabiity: availabilities.sample,
+    image_url: default_user_image,
+    location: Faker::Address.city)
 end
 # Create Bands
 bands.each {|band_name| Band.create(name: band_name,

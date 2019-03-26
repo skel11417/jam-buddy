@@ -7,6 +7,8 @@ class Musician < ApplicationRecord
   has_many :requests
   has_many :openings, through: :requests
 
+  accepts_nested_attributes_for :genres, :instruments
+
   def print_instruments
     if has_instruments?
       self.instruments.map {|instrument| instrument.name}.join(", ")
