@@ -1,2 +1,7 @@
-<h1>Bands#show</h1>
-<p>Find me in app/views/bands/show.html.erb</p>
+<h1><%= @band.name %></h1>
+<img src="<%= @band.image_url %>" alt="Photo Not Available"> <br>
+<p>Manager: <%= link_to @band.musician.name, musician_path(@band.musician_id) %></p>
+<br>
+<p>Status: <%= @band.status %></p>
+<br>
+<p><%= link_to "Link", @band.link %></p>
