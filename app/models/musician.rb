@@ -1,4 +1,5 @@
 class Musician < ApplicationRecord
+  belongs_to :user
   has_many :instrument_musicians
   has_many :instruments, through: :instrument_musicians
   has_many :genre_musicians

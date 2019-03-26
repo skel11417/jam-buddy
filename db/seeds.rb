@@ -17,7 +17,7 @@ instruments = ["Accordion", "Bagpipes", "Banjo", "Bass guitar", "Bassoon", "Beri
 
 genres = ["Blues", "Classical", "Country", "Electronic", "Folk", "Jazz", "New Age", "Reggae", "Rock", "Speed Funk", "Classical Dubstep"]
 
-bands = ["Duke Lucius and the Flatiron Singers", "Pregnancy Sink", "Righteous Ruby", "Rails Infidelity", "Bad Rails", "SQL Orgy" ]
+bands = ["Duke Lucius and the Flatiron Singers", "Pregnancy Sink", "Righteous Ruby", "Rails Infidelity", "Bad Rails", "SQL Orgy", "rake db:migraine" ]
 
 availabilities = ["single gigs", "jams", "full-time band", "part-time band", "session_work"]
 

@@ -1,6 +1,8 @@
 <h1><%= @musician.name %></h1>
   <%= image_tag @musician.image_url, size: "200x200", alt: "Musician Profile Picture" %>
-<a href="/edit"><%= link_to "Edit", edit_musician_path %></a>
+  <% if current_user == @musician.user %>
+    <%= link_to "Edit", edit_musician_path %>
+  <% end %>
 <p><em><%= @musician.print_instruments %></em></p>
 <h3>(<%= @musician.availabiity %>)</h3>
   <h4>Message Me ADD EMAIL TO USER</h4>
