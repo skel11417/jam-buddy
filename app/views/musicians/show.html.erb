@@ -1,5 +1,7 @@
 <h1><%= @musician.name %></h1>
-  <%= image_tag @musician.image_url, size: "200x200", alt: "Musician Profile Picture" %>
+  <div>
+    <%= image_tag @musician.image_url, size: "200x200", alt: "Musician Profile Picture" %>
+  </div>
   <% if current_user == @musician.user %>
     <%= link_to "Edit", edit_musician_path %>
   <% end %>

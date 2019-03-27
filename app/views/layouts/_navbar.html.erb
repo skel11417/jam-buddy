@@ -3,7 +3,7 @@
   <td> <strong>Jam Buddy</strong> </td>
   <td> <%= current_user.username %> </td>
   <td><%= link_to "Home", '/' %></td>
-  <td>Profile</td>
+  <td><%= link_to "Profile", musician_path(current_user.musician) %></td>
   <td>Find a Gig</td>
   <td><%= link_to "Musicians", musicians_path %></td>
   <td><%= link_to "Bands", bands_path %></td>
