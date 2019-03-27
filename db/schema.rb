@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_26_172022) do
+ActiveRecord::Schema.define(version: 2019_03_26_201145) do
 
   create_table "band_genres", force: :cascade do |t|
     t.integer "band_id"
@@ -64,6 +64,7 @@ ActiveRecord::Schema.define(version: 2019_03_26_172022) do
     t.string "location"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
   end
 
   create_table "openings", force: :cascade do |t|
@@ -81,6 +82,13 @@ ActiveRecord::Schema.define(version: 2019_03_26_172022) do
     t.string "message"
     t.string "musician_status"
     t.string "band_status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "username"
+    t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -17,6 +17,7 @@ class MusiciansController < ApplicationController
   end
 
   def edit
+    redirect_to musician_path(@musician) unless is_current_user?
   end
 
   def update
@@ -37,5 +38,9 @@ class MusiciansController < ApplicationController
 
   def musician_params
     params.require(:musician).permit(:name, :bio, :image_url, :availability, :location, instrument_ids:[], genre_ids:[])
+  end
+
+  def is_current_user?
+    current_user == @musician.user
   end
 end
