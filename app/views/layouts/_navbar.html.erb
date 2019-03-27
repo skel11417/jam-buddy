@@ -1,0 +1,14 @@
+<nav class="navbar">
+<tr>
+  <td> <%= current_user.username %> </td>
+  <td><%= link_to "Home", '/' %></td>
+  <td>Profile</td>
+  <td>Find a Gig</td>
+  <td><%= link_to "Musicians", musicians_path %></td>
+  <td><%= link_to "Bands", bands_path %></td>
+  <td>Notifications</td>
+  <td><%= form_tag "/logout", method: "delete" do %>
+  <%= submit_tag "Logout" %>
+<% end %></td>
+  </tr>
+</nav>
