@@ -1,6 +1,7 @@
 random_names = Faker::Name
 
 default_user_image = "http://lorempixel.com/400/200"
+default_band_image = "http://lorempixel.com/400/200"
 
 Instrument.destroy_all
 Genre.destroy_all
@@ -17,7 +18,7 @@ instruments = ["Accordion", "Bagpipes", "Banjo", "Bass guitar", "Bassoon", "Beri
 
 genres = ["Blues", "Classical", "Country", "Electronic", "Folk", "Jazz", "New Age", "Reggae", "Rock", "Speed Funk", "Classical Dubstep"]
 
-bands = ["Duke Lucius and the Flatiron Singers", "Pregnancy Sink", "Righteous Ruby", "Rails Infidelity", "Bad Rails", "SQL Orgy", "rake db:migraine" ]
+bands = ["Duke Lucius and the Flatiron Singers", "Pregnancy Sink", "Righteous Ruby", "Rails Infidelity", "Bad Rails", "SQL Orgy", "rake db:migraine", "Abuser.all" ]
 
 availabilities = ["single gigs", "jams", "full-time band", "part-time band", "session_work"]
 
@@ -37,7 +38,7 @@ end
 # Create Bands
 bands.each {|band_name| Band.create(name: band_name,
                     musician_id: Musician.all.sample.id,
-                    image_url: "http://lorempixel.com/400/200",
+                    image_url: default_band_image,
                     status: availabilities.sample,
                     link: Faker::Internet.url
                     )}

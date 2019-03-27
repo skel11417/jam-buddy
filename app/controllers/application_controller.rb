@@ -1,8 +1,5 @@
 class ApplicationController < ActionController::Base
   before_action :require_login
-  
-
-
   helper_method :current_user
 
   def current_user
@@ -12,7 +9,7 @@ class ApplicationController < ActionController::Base
   end
 
   def destroy
-    session.delete :username
+    session.delete :user_id
   end
 
   private

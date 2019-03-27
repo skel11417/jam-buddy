@@ -4,8 +4,9 @@ Rails.application.routes.draw do
 
   resources :bands
   resources :musicians
+  resources :users, except: [:index]
   resources :requests, only: [:index, :show, :new, :create, :delete]
-  # get "/", to: "musicians#show"
+  get "/", to: "users#show", as: "dashboard"
   get "/login", to: "sessions#new", as: "login"
   post "/login", to: "sessions#create"
   delete "/logout", to: "sessions#destroy"
