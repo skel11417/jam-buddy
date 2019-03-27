@@ -24,16 +24,27 @@ class BandsController < ApplicationController
   end
 
   def create
-    @band = Band.create(get_params)
-    redirect_to @band
+    flash[:errors] = nil
+    @band = Band.new(get_params)
+    if (@band.valid?)
+      @band.save
+      redirect_to @band
+    else
+      flash[:errors] = @band.errors.full_messages
+      render :new
+    end
   end
 
   def edit
   end
 
   def update
-    @band.update(get_params)
-    redirect_to @band
+    if (@band.update(get_params))
+      redirect_to @band
+    else
+      flash[:errors] = @band.errors.full_messages
+      render :edit
+    end
   end
 
   def destroy
@@ -52,7 +63,7 @@ class BandsController < ApplicationController
   end
 
   def is_current_user?
-    @user = get_band.manager
+    @user = get_band.user
     current_user == @user
   end
 

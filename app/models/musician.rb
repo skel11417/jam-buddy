@@ -12,7 +12,7 @@ class Musician < ApplicationRecord
 
   def print_instruments
     if has_instruments?
-      self.instruments.map {|instrument| instrument.name}.join(", ")
+      self.instruments.map { |instrument| instrument.name }.join(", ")
     else
       ""
     end
@@ -20,5 +20,13 @@ class Musician < ApplicationRecord
 
   def has_instruments?
     self.instruments.any?
+  end
+
+  def managed_openings
+    ret_array = []
+    self.bands.each do |band|
+      ret_array.concat(band.openings)
+    end
+    ret_array
   end
 end

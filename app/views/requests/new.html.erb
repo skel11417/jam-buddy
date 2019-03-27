@@ -1,2 +1,15 @@
-<h1>Applications#new</h1>
-<p>Find me in app/views/applications/new.html.erb</p>
+<h1>Request for <%= @requested.name %></h1>
+<%= form_for @request do |f| %>
+  <%= f.hidden_field :musician_status, value: @musician_status %>
+  <%= f.hidden_field :band_status, value: @band_status %>
+  <%= f.hidden_field :musician_id, value: @musician.id %>
+  <% if @requester == "opening" %>
+    <%= f.label :opening_id, "For Which Opening?" %>
+    <%= f.collection_select :opening_id, current_user.musician.managed_openings, :id, :name %>
+  <% else %>
+    <%= f.hidden_field :opening_id, value: @opening.id %>
+  <% end %>
+  <% f.label :message, "Message (Optional)" %>
+  <%= f.text_area :message %>
+  <%= f.submit "Request"%>
+<% end %>

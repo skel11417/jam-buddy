@@ -1,0 +1,14 @@
+<div>
+  <% if @bands.length > 0 %>
+    Your bands: 
+    <ul>
+      <% @bands.each do |band| %>
+        <li><%= link_to band.name, band_path(band) %></li>
+      <% end %>
+    </ul>
+  <% else %>
+    You Don't Have Any Bands Yet!
+  <% end %>
+  <br>
+  <%= button_to "Create New Band", new_band_path, method: :get %>
+</div>

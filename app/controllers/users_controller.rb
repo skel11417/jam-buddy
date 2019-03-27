@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
   skip_before_action :require_login, only: [:new, :create]
-  
-  def show
 
+  def show
+    @bands = Band.where(musician_id: current_user.musician.id)
   end
 
   def new
@@ -27,10 +27,9 @@ class UsersController < ApplicationController
     end
   end
 
-  # private
+  private
 
   def new_user_params
     params.require(:user).permit(:username, :password, :musician_attributes => [:name, :location, :availabiity, :genre_ids, :instrument_ids])
   end
-
 end

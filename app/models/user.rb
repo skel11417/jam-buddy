@@ -15,4 +15,8 @@ class User < ApplicationRecord
     musician.save
   end
 
+  def first_name
+    name = self.musician.name
+    return name.split(" ")[0]
+  end
 end

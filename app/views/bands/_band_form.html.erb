@@ -1,3 +1,6 @@
+<% if flash[:errors] then flash[:errors].each do |error| %>
+  <p><%= error %></p>
+<% end end %>
 <%= form_for @band do |f|%>
   <%= f.hidden_field :musician_id, value: @band.musician.id %>
   <%= f.label :name %>

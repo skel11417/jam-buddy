@@ -28,3 +28,6 @@
   <div class="">
     soundcloud, spotify, bandcamp, official website
   </div>
+  <% if current_user.musician != @musician %>
+  <%= button_to "Recruit This Musician", new_request_path, method: :get, params: {"musician" => @musician.id} %>
+  <% end %>
