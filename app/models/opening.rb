@@ -4,6 +4,8 @@ class Opening < ApplicationRecord
   has_many :requests
   has_many :musicians, through: :requests
 
+  validates :description, length: {minimum: 20}
+
   def manager
     if (self.band)
       return self.band.manager

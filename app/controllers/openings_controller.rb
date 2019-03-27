@@ -17,23 +17,33 @@ class OpeningsController < ApplicationController
   end
 
   def create
-    @opening = Opening.create(get_params)
-    redirect_to opening_path(@opening.id)
+    flash[:errors] = nil
+    @opening = Opening.new(get_params)
+    if (@opening.valid?)
+      @opening.save
+      redirect_to opening_path(@opening.id)
+    else
+      flash[:errors] = @opening.errors.full_messages
+      render :new
+    end
   end
 
   def edit
-    get_opening
   end
 
   def update
-    get_opening
-    @opening.update(get_params)
-    redirect_to @opening
+    flash[:errors] = nil
+    if (@opening.update(get_params))
+      redirect_to @opening
+    else
+      flash[:errors] = @opening.errors.full_messages
+      render :edit
+    end
   end
 
   def destroy
-    @band = get_opening.band
-    get_opening.destroy
+    @band = @opening.band
+    @opening.destroy
     redirect_to @band
   end
 
