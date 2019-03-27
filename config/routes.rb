@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get "/openings/new/:band_id", to: "openings#new", as: "new_opening"
 
   resources :bands
+  get "/my-bands", to: "bands#index_by_user", as: "user_bands"
   resources :musicians
   resources :users, except: [:index]
   resources :requests, only: [:index, :show, :new, :create, :delete]

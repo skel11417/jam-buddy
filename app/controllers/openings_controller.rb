@@ -1,4 +1,7 @@
 class OpeningsController < ApplicationController
+  before_action :get_opening, only: [:show, :edit, :update, :destroy]
+  before_action :restrict_access, only: [:edit, :update, :destroy]
+
   def index
     @openings = Opening.all
   end
@@ -9,7 +12,8 @@ class OpeningsController < ApplicationController
 
   def new
     @opening = Opening.new
-    @band = Band.find(params[:band_id])
+    @opening.band = Band.find(params[:band_id])
+    redirect_to band_path(@opening.band) unless is_current_user?
   end
 
   def create
@@ -22,7 +26,8 @@ class OpeningsController < ApplicationController
   end
 
   def update
-    @opening = Opening.update(get_params)
+    get_opening
+    @opening.update(get_params)
     redirect_to @opening
   end
 
@@ -40,5 +45,15 @@ class OpeningsController < ApplicationController
 
   def get_params
     params.require(:opening).permit(:band_id, :instrument_id, :commitment, :description)
+  end
+
+  def is_current_user?
+    @user = @opening.manager
+    current_user == @user
+  end
+
+  def restrict_access
+    get_opening
+    redirect_to band_path(@opening.band) unless is_current_user?
   end
 end

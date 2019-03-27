@@ -2,6 +2,12 @@
 <img src="<%= @band.image_url %>" alt="Photo Not Available"> <br>
 <p>Manager: <%= link_to @band.musician.name, musician_path(@band.musician_id) %></p>
 <p>Location: <%= @band.location %></p>
+<p>Genres: <% @band.genres.map do |g| %>
+    <%= g.name %>
+    <% if (g != @band.genres[-1])%>
+      <%= ", " %>
+    <% end %>
+  <%end%></p>
 <p>Status: <%= @band.status %></p>
 <p>Openings: </p>
 <ul>
@@ -13,10 +19,12 @@
 <br>
 <br>
 <%# USER OPTIONS %>
-<%= button_to "Edit This Band", edit_band_path(@band), method: :get %>
-<br>
-<%= button_to "Create New Opening", new_opening_path(@band.id), method: :get  %>
-<br>
-<%= form_tag band_path(@band), method: :delete do %>
-  <%= submit_tag "Delete this Band"%>
+<% if (@band.manager == current_user) %>
+  <%= button_to "Edit This Band", edit_band_path(@band), method: :get %>
+  <br>
+  <%= button_to "Create New Opening", new_opening_path(@band.id), method: :get  %>
+  <br>
+  <%= form_tag band_path(@band), method: :delete do %>
+    <%= submit_tag "Delete this Band"%>
+  <% end %>
 <% end %>
