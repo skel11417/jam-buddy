@@ -1,4 +1,9 @@
 <h1><%= @band.name %></h1>
+<%# 
+
+BASIC INFO 
+
+%>
 <img src="<%= @band.image_url %>" alt="Photo Not Available"> <br>
 <p>Manager: <%= link_to @band.musician.name, musician_path(@band.musician_id) %></p>
 <p>Location: <%= @band.location %></p>
@@ -9,17 +14,30 @@
     <% end %>
   <%end%></p>
 <p>Status: <%= @band.status %></p>
+<%# 
+
+OPENINGS
+
+ %>
 <p>Openings: </p>
 <ul>
   <% Opening.all.select {|o| o.band_id == @band.id}.each do |opening| %>
-    <li><%= link_to "Wanted: #{opening.instrument.name} (#{opening.commitment})", opening_path(opening)%></li>
+    <li><%= link_to "Wanted: #{opening.instrument.name} (#{opening.commitment})", opening_path(opening)%>
+      <% if current_user != opening.user %>
+        <%= button_to "  Apply!", new_request_path, method: :get, params: {"opening" => opening.id} %>
+      <% end %>
+    </li>
   <% end %>
 </ul>
-<%= link_to @band.link, @band.link %> <%# HOW DO EXTERNAL LINKS WORK %>
+<%= link_to @band.link, @band.link %>
 <br>
 <br>
-<%# USER OPTIONS %>
-<% if (@band.manager == current_user) %>
+<%# 
+
+USER OPTIONS 
+
+%>
+<% if (@band.user == current_user) %>
   <%= button_to "Edit This Band", edit_band_path(@band), method: :get %>
   <br>
   <%= button_to "Create New Opening", new_opening_path(@band.id), method: :get  %>

@@ -58,7 +58,7 @@ class OpeningsController < ApplicationController
   end
 
   def is_current_user?
-    @user = @opening.manager
+    @user = @opening.user
     current_user == @user
   end
 

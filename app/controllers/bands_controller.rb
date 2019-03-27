@@ -24,6 +24,7 @@ class BandsController < ApplicationController
   end
 
   def create
+    flash[:errors] = nil
     @band = Band.new(get_params)
     if (@band.valid?)
       @band.save
@@ -62,7 +63,7 @@ class BandsController < ApplicationController
   end
 
   def is_current_user?
-    @user = get_band.manager
+    @user = get_band.user
     current_user == @user
   end
 

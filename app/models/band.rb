@@ -11,7 +11,7 @@ class Band < ApplicationRecord
   validates :genres, length: {minimum: 1}
   validates :name, uniqueness: {scope: :musician_id, message: "This User Already Has a Band of that Name"}
 
-  def manager
+  def user
     if (self.musician)
       return self.musician.user
     else

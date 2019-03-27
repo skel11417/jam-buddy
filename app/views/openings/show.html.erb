@@ -4,9 +4,15 @@
 <p>Commitment: <%= @opening.commitment %></p>
 <p>Description: <%= @opening.description %></p>
 <%# USER OPTIONS %>
-<%= button_to "Edit Opening", edit_opening_path(@opening), method: :get %>
-<%= form_tag opening_path(@opening), method: :delete do  %>
-  <%= submit_tag "Remove Opening" %>
+<% if current_user == @opening.user %>
+  <%= button_to "Edit Opening", edit_opening_path(@opening), method: :get %>
+  <%= form_tag opening_path(@opening), method: :delete do  %>
+    <%= submit_tag "Remove Opening" %>
+  <% end %>
+<% else %>
+  <% flash[:opening_id] = @opening.id %>
+  <% flash[:musician_id] = current_user.musician.id %>
+  <%= button_to "Apply For This Opening", new_request_path, method: :get, params: {"opening" => @opening.id} %>
 <% end %>
 <%# MUSICIAN OPTIONS %>
 <%# APPLY %>

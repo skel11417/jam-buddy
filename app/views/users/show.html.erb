@@ -1,0 +1,8 @@
+<h1>Hello, <%= current_user.first_name%></h1>
+<br>
+<div>
+  <%= link_to "Your Profile", musician_path(current_user.musician) %></div>
+<br>
+<div>
+  <%= render "band_index" %>
+</div>

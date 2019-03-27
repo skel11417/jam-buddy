@@ -6,11 +6,15 @@ class Opening < ApplicationRecord
 
   validates :description, length: {minimum: 20}
 
-  def manager
+  def user
     if (self.band)
-      return self.band.manager
+      return self.band.user
     else
       return nil
     end
+  end
+
+  def name
+    "#{self.band.name}: #{self.instrument.name}"
   end
 end
