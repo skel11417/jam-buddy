@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   skip_before_action :require_login, only: [:new, :create]
+  
   def show
 
   end
@@ -8,9 +9,12 @@ class UsersController < ApplicationController
     #
     # use session instead of params?
     #
-    redirect_to login_path unless params.include? :name
-    @name = params[:name]
-    @user = User.new
+    if params[:name].length > 0
+      @name = params[:name]
+      @user = User.new
+    else
+      redirect_to login_path
+    end
   end
 
   def create
