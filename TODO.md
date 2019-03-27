@@ -11,3 +11,4 @@ TODO
 - Filter indexes (indices?)
 - Testing
 - Validations
+- Flash messages
