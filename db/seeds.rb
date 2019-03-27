@@ -46,7 +46,9 @@ end
 
 bands.each {|band_name|  Band.create(name: band_name,
                     musician_id: Musician.all.sample.id,
-                    image_url: default_band_image,        status: availabilities.sample,
+                    image_url: default_band_image,
+                    status: availabilities.sample,
+                    location: Faker::Address.city,
                     link: Faker::Internet.url,
                     genre_ids: [Genre.all.sample.id]
                     )}
