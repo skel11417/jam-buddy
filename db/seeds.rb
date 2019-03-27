@@ -1,3 +1,4 @@
+
 random_names = Faker::Name
 
 default_user_image = "http://lorempixel.com/400/200"
@@ -12,12 +13,13 @@ GenreMusician.destroy_all
 Band.destroy_all
 Opening.destroy_all
 Request.destroy_all
+User.destroy_all
 
 instruments = ["Accordion", "Bagpipes", "Banjo", "Bass guitar", "Bassoon", "Berimbau", "Bongo", "Cello", "Clarinet", "Cor anglais", "Cornet", "Cymbal", "Didgeridoo", "Double bass", "Drum kit", "Euphonium", "Flute", "French horn", "Glass harmonica", "Glockenspiel", "Gong", "Guitar", "Harmonica", "Harp", "Harpsichord", "Hammered dulcimer", "Hurdy gurdy", "Jew’s harp", "Kalimba", "Lute", "Lyre", "Mandolin", "Marimba", "Melodica", "Oboe", "Ocarina", "Octobass", "Organ", "Pan Pipes", "Pennywhistle", "Piano", "Piccolo", "Recorder", "Saxophone", "Sitar", "Synthesizer", "Tambourine", "Timpani", "Triangle", "Trombone", "Trumpet", "Theremin", "Tuba", "Ukulele", "Viola", "Violin", "Whamola", "Xylophone", "Zither"]
 
 genres = ["Blues", "Classical", "Country", "Electronic", "Folk", "Jazz", "New Age", "Reggae", "Rock", "Speed Funk", "Classical Dubstep"]
 
-bands = ["Duke Lucius and the Flatiron Singers", "Pregnancy Sink", "Righteous Ruby", "Rails Infidelity", "Bad Rails", "SQL Orgy", "rake db:migraine" ]
+bands = ["Duke Lucius and the Flatiron Singers", "Pregnancy Sink", "Righteous Ruby", "Rails Infidelity", "Bad Rails", "SQL Orgy", "rake db:migraine", "[ S U N S H I N E ]", "JSON and the Argonauts", "Pry Yourself To Sleep", "Ruby on Whales" ]
 
 availabilities = ["single gigs", "jams", "full-time band", "part-time band", "session_work"]
 
@@ -27,22 +29,31 @@ instruments.each {|instrument| Instrument.create(name: instrument)}
 genres.each {|genre| Genre.create(name: genre)}
 
 # Create Musician
-50.times do
+i = 1
+while (i < 51) 
+  u = User.create(username: "User#{i}", password: "password" )
+
   Musician.create(name: random_names.name,
     bio: Faker::Lorem.paragraph,
     availabiity: availabilities.sample,
     image_url: default_user_image,
-    location: Faker::Address.city)
+    location: Faker::Address.city, user_id: u.id)
+
+  i += 1
 end
 # Create Bands
-bands.each {|band_name| Band.create(name: band_name,
+
+bands.each {|band_name|  Band.create(name: band_name,
+  
                     musician_id: Musician.all.sample.id,
                     image_url: "http://lorempixel.com/400/200",
+                    location: Faker::Address.city,
                     status: availabilities.sample,
-                    link: Faker::Internet.url
+                    link: Faker::Internet.url,
+                    genre_ids: [Genre.all.sample.id]
                     )}
 # Give bands a genre
-Band.all.each {|band| band.genres << Genre.all.sample(3)}
+Band.all.each {|band| band.genres << Genre.all.sample(2)}
 # Give musicians a genre and an instrument
 Musician.all.each do |musician|
    musician.genres << Genre.all.sample(3)
