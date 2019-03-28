@@ -6,7 +6,7 @@
     <td><%= link_to "Profile", musician_path(current_user.musician) %></td>
     <td><%= link_to "Musicians", musicians_path %></td>
     <td><%= link_to "Bands", bands_path %></td>
-    <td> <%= link_to Request.notification(current_user.id), requests_path %> </td>
+    <td><%= link_to Request.notification(current_user.id), requests_path %> </td>
     <td><%= link_to "Jam!", suggest_path %></td>
     <td><%= form_tag "/logout", method: "delete" do %>
         <%= submit_tag "Logout" %>
