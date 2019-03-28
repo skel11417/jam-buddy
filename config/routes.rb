@@ -5,10 +5,10 @@ Rails.application.routes.draw do
 
   resources :bands
   resources :musicians, only: [:show, :index, :edit, :update]
+  get "users/suggest", to: "users#suggest", as: "suggest"
   resources :users, except: [:index]
   resources :requests, only: [:show, :new, :create, :index]
 
-  get "users/suggest", to: "users#suggest", as: "suggest"
   post "/new_user", to: "users#form_1"
   get "/", to: "users#show", as: "dashboard"
   get "/login", to: "sessions#new", as: "login"

@@ -1,41 +1,33 @@
-<nav class="navbar">
-  <tr>
-    <td> <strong>Jam Buddy</strong> </td>
-    <td> <%= current_user.username %> </td>
-    <td><%= link_to "Home", '/' %></td>
-    <td><%= link_to "Profile", musician_path(current_user.musician) %></td>
-    <td><%= link_to "Musicians", musicians_path %></td>
-    <td><%= link_to "Bands", bands_path %></td>
-    <td><%= link_to Request.notification(current_user.id), requests_path %> </td>
-    <td><%= link_to "Jam!", suggest_path %></td>
-    <td><%= form_tag "/logout", method: "delete" do %>
-        <%= submit_tag "Logout" %>
-      <% end %></td>
-  </tr>
-<nav class="navbar navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <a class="navbar-brand" href="/">
-    <img src="/assets/favicon-32x32.png" width="30" height="30" class="d-inline-block align-top" alt="">
-    JamBuddy
-  </a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <img src="/assets/favicon-32x32.png" width="30" height="30" class="d-inline-block align-top" alt="">JamBuddy</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
 
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Features</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Pricing</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-        </li>
-      </ul>
-    </div>
-
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<%= musician_path(current_user.musician) %>">Profile</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<%= musicians_path %>">Musicians</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<%= bands_path %>">Bands</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<%= requests_path %>"><%= Request.notification(current_user.id) %></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<%= suggest_path %>">Jam!</a>
+      </li>
+      <ul><%= form_tag "/logout", method: "delete", :class => "form-inline my-2 my-lg-0" do %>
+          <%= submit_tag "Logout", :class => "btn btn-outline-success my-2 my-sm-0" %>
+        <% end %></ul>
+    </ul>
+  </div>
 </nav>
