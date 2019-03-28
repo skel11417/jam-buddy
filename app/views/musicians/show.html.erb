@@ -13,6 +13,7 @@
 <% end %>
 <h3>(<%= @musician.availabiity %>)</h3>
 <h4>Message Me ADD EMAIL TO USER</h4>
+<h4>Location: <%= @musician.location %></h4>
 <ul>Plays:
   <% @musician.genres.each do |genre| %>
     <li><%= genre.name %></li>

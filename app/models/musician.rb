@@ -29,4 +29,19 @@ class Musician < ApplicationRecord
     end
     ret_array
   end
+
+  def self.suggest(user_id) #suggest musicians who fit a user's openings
+    suggested = []
+
+    User.find(user_id).musician.bands.each do |band|
+      location = band.location
+      instruments = band.openings.map { |b| b.instrument }
+
+      suggest = Musician.all.select do |musician|
+        musician.location == location && (musician.instruments & instruments).length > 0
+      end
+      suggested.concat(suggest)
+    end
+    return suggested
+  end
 end

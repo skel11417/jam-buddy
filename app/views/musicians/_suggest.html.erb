@@ -1,0 +1,6 @@
+<h1>Suggested Musicians</h1>
+<ul>
+  <% @musicians.each do |musician| %>
+    <li><%= link_to musician.name, musician_path(musician) %></li>
+  <% end %>
+</ul>
