@@ -5,6 +5,11 @@ class UsersController < ApplicationController
     @bands = Band.where(musician_id: current_user.musician.id)
   end
 
+  def suggest
+    @musicians = Musician.suggest(current_user.id)
+    @openings = Opening.suggest(current_user.id)
+  end
+
   # form_1
   def form_1
     # This takes user input on the login page extend for

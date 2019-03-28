@@ -24,8 +24,18 @@ bands = ["Duke Lucius and the Flatiron Singers", "Pregnancy Sink", "Righteous Ru
 
 availabilities = ["single gigs", "jams", "full-time band", "part-time band", "session-work"]
 
+locations = ["Washington, D.C.", "Mars", "Seattle", "Toronto", "Right Behind You"]
+
+suggest_instruments = ["Guitar", "Bass", "Drums", "Accordion", "Banjo"]
+
+
 # Create Instruments
-instruments.each {|instrument| Instrument.create(name: instrument)}
+# instruments.each {|instrument| Instrument.create(name: instrument)
+# }
+
+suggest_instruments.each {|instrument| Instrument.create(name: instrument)}
+
+
 # Create Genres
 genres.each {|genre| Genre.create(name: genre)}
 
@@ -38,7 +48,8 @@ while (i < 51)
     bio: Faker::Lorem.paragraph,
     availabiity: availabilities.sample,
     image_url: default_musician_image,
-    location: Faker::Address.city, user_id: u.id)
+    location:  locations.sample,
+     user_id: u.id)
 
   i += 1
 end
@@ -49,7 +60,7 @@ bands.each {|band_name|  Band.create(name: band_name,
                     image_url: default_band_image,                  
                     status: availabilities.sample,
                     link: Faker::Internet.url,
-                    location: Faker::Address.city,
+                    location: locations.sample,
                     genre_ids: [Genre.all.sample.id]
                     )}
 # Give bands a genre

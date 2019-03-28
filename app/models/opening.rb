@@ -17,4 +17,21 @@ class Opening < ApplicationRecord
   def name
     "#{self.band.name}: #{self.instrument.name}"
   end
+
+  def self.suggest(user_id)
+    suggested = []
+    user_musician = User.find(user_id).musician
+    #instrument match
+    #location match
+    #availability match
+    location_match = self.all.select do |opening|
+      user_musician.location == opening.band.location
+    end
+    instrument_match = self.all.select do |opening|
+      user_musician.instruments.include?(opening.instrument)
+    end
+    best_match = location_match & instrument_match
+
+    return best_match
+  end
 end

@@ -1,0 +1,9 @@
+<h1>Suggested Openings</h1>
+<% if @openings.length > 0%>
+  <ul><% @openings.each do |opening| %>
+      <li><%= link_to opening.name, opening_path(opening) %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <h4>There are no suggested openings in your area</h4>
+<% end %>

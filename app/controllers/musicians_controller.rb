@@ -1,5 +1,6 @@
 class MusiciansController < ApplicationController
   before_action :get_musician, only: [:show, :edit]
+
   def index
     @musicians = Musician.all
   end
@@ -33,7 +34,7 @@ class MusiciansController < ApplicationController
   end
 
   def musician_params
-    params.require(:musician).permit(:name, :bio, :image_url, :availability, :location, instrument_ids:[], genre_ids:[])
+    params.require(:musician).permit(:name, :bio, :image_url, :availability, :location, instrument_ids: [], genre_ids: [])
   end
 
   def is_current_user?
