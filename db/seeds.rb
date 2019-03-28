@@ -1,8 +1,8 @@
 # db/seeds.rb
 random_names = Faker::Name
 
-default_user_image = "http://lorempixel.com/400/200"
-default_band_image = "http://lorempixel.com/400/200"
+default_musician_image = '/assets/default_musician.png'
+default_band_image = "/assets/default_band.png"
 
 Instrument.destroy_all
 Genre.destroy_all
@@ -37,7 +37,7 @@ while (i < 51)
   Musician.create(name: random_names.name,
     bio: Faker::Lorem.paragraph,
     availabiity: availabilities.sample,
-    image_url: default_user_image,
+    image_url: default_musician_image,
     location: Faker::Address.city, user_id: u.id)
 
   i += 1
@@ -49,7 +49,7 @@ bands.each {|band_name|  Band.create(name: band_name,
                     image_url: default_band_image,                  
                     status: availabilities.sample,
                     link: Faker::Internet.url,
-                    location: Faker::Address.city, 
+                    location: Faker::Address.city,
                     genre_ids: [Genre.all.sample.id]
                     )}
 # Give bands a genre

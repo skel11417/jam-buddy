@@ -1,20 +1,33 @@
 <h1><%= @musician.name %></h1>
-<%= image_tag @musician.image_url, size: "200x200", alt: "Musician Profile Picture" %>
-<% if current_user == @musician.user %>
-  <%= link_to "Edit", edit_musician_path %>
-<% end %>
 <p><em><%= @musician.print_instruments %></em></p>
-<h3>(<%= @musician.availabiity %>)</h3>
-<h4>Message Me ADD EMAIL TO USER</h4>
-<ul>Plays:
-  <% @musician.genres.each do |genre| %>
-    <li><%= genre.name %></li>
+  <div>
+    <%= image_tag @musician.image_url, size: "200x200", alt: "Musician Profile Picture" %>
+  </div>
+  <% if current_user == @musician.user %>
+    <%= link_to "Edit", edit_musician_path %>
   <% end %>
-</ul>
-<h4>Links:</h4>
-<div class="">
-  soundcloud, spotify, bandcamp, official website
-</div>
-<% if current_user.musician != @musician %>
+<h3>(<%= @musician.availabiity %>)</h3>
+  <h4>Message Me ADD EMAIL TO USER</h4>
+
+  <ul>Plays:
+    <% @musician.genres.each do |genre| %>
+      <li><%= genre.name %></li>
+      <% end %>
+  </ul>
+  <h4>My Bands:</h4>
+
+  <% @musician.bands.each do |band| %>
+    <a href="/bands/<% band.id %>"
+      <div class="band-container">
+        <%= image_tag band.image_url, size: "100x100", alt: "Band Profile Picture" %><h5><%= band.name %></h5>
+        <h6><%= band.status.capitalize %></h6>
+      </div>
+    </a>
+  <% end %>
+  <h4>Links:</h4>
+  <div class="">
+    soundcloud, spotify, bandcamp, official website
+  </div>
+  <% if current_user.musician != @musician %>
   <%= button_to "Recruit This Musician", new_request_path, method: :get, params: {"musician" => @musician.id} %>
-<% end %>
+  <% end %>
