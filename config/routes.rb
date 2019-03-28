@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :openings, except: :new #new has custom route (so as to pass band_id in the url params)
 
   resources :bands
+
   resources :musicians, only: [:show, :index, :edit, :update]
   get "users/suggest", to: "users#suggest", as: "suggest"
   resources :users, except: [:index]
