@@ -1,3 +1,17 @@
+<nav class="navbar">
+  <tr>
+    <td> <strong>Jam Buddy</strong> </td>
+    <td> <%= current_user.username %> </td>
+    <td><%= link_to "Home", '/' %></td>
+    <td><%= link_to "Profile", musician_path(current_user.musician) %></td>
+    <td><%= link_to "Musicians", musicians_path %></td>
+    <td><%= link_to "Bands", bands_path %></td>
+    <td> <%= link_to Request.notification(current_user.id), requests_path %> </td>
+    <td><%= link_to "Jam!", suggest_path %></td>
+    <td><%= form_tag "/logout", method: "delete" do %>
+        <%= submit_tag "Logout" %>
+      <% end %></td>
+  </tr>
 <nav class="navbar navbar-dark bg-dark">
   <a class="navbar-brand" href="/">
     <img src="/assets/favicon-32x32.png" width="30" height="30" class="d-inline-block align-top" alt="">

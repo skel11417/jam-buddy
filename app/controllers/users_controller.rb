@@ -19,6 +19,10 @@ class UsersController < ApplicationController
       redirect_to login_path
     end
   end
+  def suggest
+    @musicians = Musician.suggest(current_user.id)
+    @openings = Opening.suggest(current_user.id)
+  end
 
   def new
     @name = session[:name]
