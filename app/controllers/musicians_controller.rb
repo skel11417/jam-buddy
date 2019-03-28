@@ -7,10 +7,6 @@ class MusiciansController < ApplicationController
   def show
   end
 
-  def new
-    @musician = Musician.new
-  end
-
   def create
     @musician = Musician.create(musician_params) #configure strong params
     redirect_to @musician

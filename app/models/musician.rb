@@ -12,7 +12,7 @@ class Musician < ApplicationRecord
 
   def print_instruments
     if has_instruments?
-      self.instruments.map { |instrument| instrument.name }.join(", ")
+      self.instruments.sort.map { |instrument| instrument.name }.join(", ")
     else
       ""
     end

@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
       session[:user_id] = @user.id
       redirect_to user_path(@user)
     else
-      flash[:notice] = "nuh uh"
+      flash[:notice] = "The user does not exist"
       redirect_to login_path
     end
   end
