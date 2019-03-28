@@ -7,23 +7,42 @@ class RequestsController < ApplicationController
 
   def index
     @requests = Request.sort_requests(current_user.id)
+    @requests["musicians"].each { |r| r.read = true }
   end
 
   def create
     @request = Request.new(get_params)
     if (@request.valid?)
+      @request.read = false
       @request.save
-      redirect_to @request.requested_path
+      redirect_to requested_path
     else
       redirect_to "/"
     end
   end
 
   def show
-    @request = Request.find(params[:id])
+    get_request
+  end
+
+  def destroy
+    get_request.destroy
+    redirect_to requests_path
   end
 
   private
+
+  def get_request
+    @request = Request.find(params[:id])
+  end
+
+  def requested_path
+    if @request.musician_status == "pending"
+      return musician_path(@request.musician_id)
+    else
+      return opening_path(@request.opening_id)
+    end
+  end
 
   def get_params
     params.require(:request).permit(:musician_id, :musician_status, :opening_id, :band_status, :message, :user_id)

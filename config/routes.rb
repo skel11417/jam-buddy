@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   resources :musicians
   resources :users, except: [:index]
 
-  resources :requests, only: [:show, :new, :create, :index]
+  resources :requests, except: [:edit, :update]
 
   get "/", to: "users#show", as: "dashboard"
   get "/login", to: "sessions#new", as: "login"

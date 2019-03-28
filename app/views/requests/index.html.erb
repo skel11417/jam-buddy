@@ -3,7 +3,11 @@
   <p>Bands Looking For You:</p>
   <ul>
     <% @requests["musicians"].each do |request| %>
-      <li><%= link_to request.opening.name, opening_path(request.opening_id) %></li>
+      <li><%= link_to request.opening.name, opening_path(request.opening_id) %>
+        <%= form_tag request_path(request), method: :delete do %>
+          <%= submit_tag "Remove This Request" %>
+        <% end %>
+      </li>
     <% end %>
   </ul>
 <% end %>
@@ -11,7 +15,11 @@
   <p>Musicians Looking For You:</p>
   <ul>
     <% @requests["openings"].each do |request| %>
-      <li><%= link_to request.musician.name, musician_path(request.musician_id) %></li>
+      <li><%= link_to "#{request.musician.name} (#{request.opening.name})", musician_path(request.musician_id) %>
+        <%= form_tag request_path(request), method: :delete do %>
+          <%= submit_tag "Remove This Request" %>
+        <% end %>
+      </li>
     <% end %>
   </ul>
 <% end %>
