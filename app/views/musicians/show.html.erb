@@ -17,7 +17,7 @@
   <h4>My Bands:</h4>
 
   <% @musician.bands.each do |band| %>
-    <a href="/bands/<% band.id %>"
+    <a href="/bands/<%= band.id %>"
       <div class="band-container">
         <%= image_tag band.image_url, size: "100x100", alt: "Band Profile Picture" %><h5><%= band.name %></h5>
         <h6><%= band.status.capitalize %></h6>

@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   get "/openings/new/:band_id", to: "openings#new", as: "new_opening"
 
   resources :bands
-  resources :musicians
+  resources :musicians, only: [:show, :index, :edit, :update]
   resources :users, except: [:index]
   resources :requests, only: [:show, :new, :create, :index]
 
