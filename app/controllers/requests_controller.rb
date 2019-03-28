@@ -6,14 +6,14 @@ class RequestsController < ApplicationController
   end
 
   def index
-    @requests = Request.where(user_id: current_user.id)
+    @requests = Request.sort_requests(current_user.id)
   end
 
   def create
     @request = Request.new(get_params)
     if (@request.valid?)
       @request.save
-      redirect_to request_path(@request)
+      redirect_to @request.requested_path
     else
       redirect_to "/"
     end

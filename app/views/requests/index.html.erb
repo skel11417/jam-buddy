@@ -1,5 +1,17 @@
 <h1>Notifications</h1>
-<ul>
-<% @requests.each do |request| %>
-<li></li>
-<% end %></ul>
+<% if !!(@requests["musicians"]) %>
+  <p>Bands Looking For You:</p>
+  <ul>
+    <% @requests["musicians"].each do |request| %>
+      <li><%= link_to request.opening.name, opening_path(request.opening_id) %></li>
+    <% end %>
+  </ul>
+<% end %>
+<% if !!(@requests["openings"]) %>
+  <p>Musicians Looking For You:</p>
+  <ul>
+    <% @requests["openings"].each do |request| %>
+      <li><%= link_to request.musician.name, musician_path(request.musician_id) %></li>
+    <% end %>
+  </ul>
+<% end %>
