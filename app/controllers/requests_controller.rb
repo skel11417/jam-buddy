@@ -5,6 +5,10 @@ class RequestsController < ApplicationController
     @request = Request.new
   end
 
+  def index
+    @requests = Request.where(user_id: current_user.id)
+  end
+
   def create
     @request = Request.new(get_params)
     if (@request.valid?)
@@ -22,7 +26,7 @@ class RequestsController < ApplicationController
   private
 
   def get_params
-    params.require(:request).permit(:musician_id, :musician_status, :opening_id, :band_status, :message)
+    params.require(:request).permit(:musician_id, :musician_status, :opening_id, :band_status, :message, :user_id)
   end
 
   def configure
