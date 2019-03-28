@@ -22,7 +22,7 @@ genres = ["Blues", "Classical", "Country", "Electronic", "Folk", "Jazz", "New Ag
 
 bands = ["Duke Lucius and the Flatiron Singers", "Pregnancy Sink", "Righteous Ruby", "Rails Infidelity", "Bad Rails", "SQL Orgy", "rake db:migraine", "[ S U N S H I N E ]", "JSON and the Argonauts", "Pry Yourself To Sleep", "Ruby on Whales" ]
 
-availabilities = ["single gigs", "jams", "full-time band", "part-time band", "session_work"]
+availabilities = ["single gigs", "jams", "full-time band", "part-time band", "session-work"]
 
 # Create Instruments
 instruments.each {|instrument| Instrument.create(name: instrument)}
