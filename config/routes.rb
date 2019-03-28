@@ -3,12 +3,11 @@ Rails.application.routes.draw do
   get "/openings/new/:band_id", to: "openings#new", as: "new_opening"
 
   resources :bands
-
   resources :musicians
   resources :users, except: [:index]
-
   resources :requests, only: [:show, :new, :create, :index]
 
+  post "/new_user", to: "users#form_1"
   get "/", to: "users#show", as: "dashboard"
   get "/login", to: "sessions#new", as: "login"
   post "/login", to: "sessions#create"

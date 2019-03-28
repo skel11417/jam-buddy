@@ -1,5 +1,3 @@
-
-
 ActiveRecord::Schema.define(version: 2019_03_27_213624) do
 
   create_table "band_genres", force: :cascade do |t|
