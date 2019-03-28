@@ -1,4 +1,9 @@
 <h1>Wanted: </h1>
+<% if flash[:errors] %>
+  <% flash[:errors].each do |e| %>
+    <p style="color: red;" ><%= e %></p>
+  <% end %>
+<% end %>
 <p>Band: <%= link_to @opening.band.name, band_path(@opening.band) %></p>
 <p>Role: <%= @opening.instrument.name %></p>
 <p>Commitment: <%= @opening.commitment %></p>
@@ -10,8 +15,6 @@
     <%= submit_tag "Remove Opening" %>
   <% end %>
 <% else %>
-  <% flash[:opening_id] = @opening.id %>
-  <% flash[:musician_id] = current_user.musician.id %>
   <%= button_to "Apply For This Opening", new_request_path, method: :get, params: {"opening" => @opening.id} %>
 <% end %>
 <%# MUSICIAN OPTIONS %>

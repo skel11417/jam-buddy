@@ -4,6 +4,7 @@
   <%= f.hidden_field :band_status, value: @band_status %>
   <%= f.hidden_field :musician_id, value: @musician.id %>
   <%= f.hidden_field :user_id, value: @requested.user.id %>
+  <%= f.hidden_field :read, value: false %>
   <% if @requester == "opening" %>
     <%= f.label :opening_id, "For Which Opening?" %>
     <%= f.collection_select :opening_id, current_user.musician.managed_openings, :id, :name %>

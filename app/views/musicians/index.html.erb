@@ -3,7 +3,7 @@
 <div>
   <% @musicians.each do |musician| %>
     <div class="">
-    <%= link_to musician.name, musician_path(musician) %>
+      <%= link_to "#{musician.user.username} #{musician.name}", musician_path(musician) %>
     </div>
-    <% end %>
+  <% end %>
 </div>

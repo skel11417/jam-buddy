@@ -6,18 +6,18 @@ class RequestsController < ApplicationController
   end
 
   def index
+    Request.read_all(current_user.id)
     @requests = Request.sort_requests(current_user.id)
-    @requests["musicians"].each { |r| r.read = true }
   end
 
   def create
     @request = Request.new(get_params)
     if (@request.valid?)
-      @request.read = false
       @request.save
       redirect_to requested_path
     else
-      redirect_to "/"
+      flash[:errors] = @request.errors.full_messages
+      redirect_to requested_path
     end
   end
 
@@ -37,18 +37,22 @@ class RequestsController < ApplicationController
   end
 
   def requested_path
-    if @request.musician_status == "pending"
-      return musician_path(@request.musician_id)
+    status = @musician_status ? @musician_status : @request.musician_status
+    if status == "pending"
+      exit_path = !!@musician ? musician_path(@musician) : musician_path(@request.musician_id)
+      return exit_path
     else
-      return opening_path(@request.opening_id)
+      exit_path = !!@opening ? opening_path(@opening) : opening_path(@request.opening_id)
+      return exit_path
     end
   end
 
   def get_params
-    params.require(:request).permit(:musician_id, :musician_status, :opening_id, :band_status, :message, :user_id)
+    params.require(:request).permit(:musician_id, :musician_status, :opening_id, :band_status, :message, :user_id, :read)
   end
 
   def configure
+    flash[:errors] = []
     if params["opening"] #musician requesting opening
       @requested_type = "opening"
       @opening = Opening.find(params["opening"])
@@ -66,10 +70,18 @@ class RequestsController < ApplicationController
       @requester = "opening"
       @requested_type = "musician"
       is_same_user = @musician.user == current_user
+      if (!has_openings?)
+        flash[:errors] = ["You have no openings for this musician"]
+        redirect_to requested_path
+      end
     end
     if (is_same_user)
-      flash[:error] = "You Cannot Request Your Own Account"
+      flash[:errors] = ["You Cannot Request Your Own Account"]
       redirect_to send("#{@requested_type}_path", @requested)
     end
+  end
+
+  def has_openings?
+    current_user.musician.managed_openings.length > 0
   end
 end
