@@ -19,6 +19,10 @@ class Band < ApplicationRecord
     end
   end
 
+  def print_genres
+    self.genres.sort.map { |genre| genre.name }.join(", ")
+  end
+
   def self.sanitize_bands
     orphans = Band.all.select do |b|
       Musician.find_by(id: b.musician_id) == nil

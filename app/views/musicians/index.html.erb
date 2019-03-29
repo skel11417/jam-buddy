@@ -1,8 +1,17 @@
-<h1>Musicians#index</h1>
-<div>
-  <% @musicians.each do |musician| %>
-    <div class="musician">
-    <%= link_to musician.name, musician_path(musician) %>
-    </div>
-  <% end %>
+<div class = "index-wrapper">
+  <div class = 'index'>
+    <% @musicians.each do |musician| %>
+      <div class="index-item">
+        <a href = "<%= musician_path(musician) %>">
+          <div class = "index-item-title">
+            <strong><%= musician.name %></strong></div>
+          <div class = "index-item-content">
+            <img src="<%=musician.image_url%>" alt="Photo Not Available" class = "index-image">
+            <em><%= musician.location %></em><br>
+            <em><%= musician.print_instruments %></em>
+          </div>
+        </a>
+      </div>
+    <% end %>
+  </div>
 </div>

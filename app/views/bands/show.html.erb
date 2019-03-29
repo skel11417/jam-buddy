@@ -1,48 +1,50 @@
-<h1><%= @band.name %></h1>
-<%# 
+<div class = "item">
+  <h1><%= @band.name %></h1>
+  <%# 
 
 BASIC INFO 
 
 %>
-<img src="<%= @band.image_url %>" alt="Photo Not Available"> <br>
-<p>Manager: <%= link_to "#{@band.musician.name} (#{@band.user.username})", musician_path(@band.musician_id) %></p>
-<p>Location: <%= @band.location %></p>
-<p>Genres: <% @band.genres.map do |g| %>
-    <%= g.name %>
-    <% if (g != @band.genres[-1])%>
-      <%= ", " %>
-    <% end %>
-  <%end%></p>
-<p>Status: <%= @band.status %></p>
-<%# 
+  <img src="<%= @band.image_url %>" alt="Photo Not Available"> <br>
+  <p>Manager: <%= link_to "#{@band.musician.name} (#{@band.user.username})", musician_path(@band.musician_id) %></p>
+  <p>Location: <%= @band.location %></p>
+  <p>Genres: <% @band.genres.map do |g| %>
+      <%= g.name %>
+      <% if (g != @band.genres[-1])%>
+        <%= ", " %>
+      <% end %>
+    <%end%></p>
+  <p>Status: <%= @band.status %></p>
+  <%# 
 
 OPENINGS
 
  %>
-<p>Openings: </p>
-<ul>
-  <% Opening.all.select {|o| o.band_id == @band.id}.each do |opening| %>
-    <li><%= link_to "Wanted: #{opening.instrument.name} (#{opening.commitment})", opening_path(opening)%>
-      <% if current_user != opening.user %>
-        <%= button_to "  Apply!", new_request_path, method: :get, params: {"opening" => opening.id} %>
-      <% end %>
-    </li>
-  <% end %>
-</ul>
-<%= link_to @band.link, @band.link %>
-<br>
-<br>
-<%# 
+  <p>Openings: </p>
+  <ul>
+    <% Opening.all.select {|o| o.band_id == @band.id}.each do |opening| %>
+      <li><%= link_to "Wanted: #{opening.instrument.name} (#{opening.commitment})", opening_path(opening)%>
+        <% if current_user != opening.user %>
+          <%= button_to "  Apply!", new_request_path, method: :get, params: {"opening" => opening.id} %>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+  <%= link_to @band.link, @band.link %>
+  <br>
+  <br>
+  <%# 
 
 USER OPTIONS 
 
 %>
-<% if (@band.user == current_user) %>
-  <%= button_to "Edit This Band", edit_band_path(@band), method: :get %>
-  <br>
-  <%= button_to "Create New Opening", new_opening_path(@band.id), method: :get  %>
-  <br>
-  <%= form_tag band_path(@band), method: :delete do %>
-    <%= submit_tag "Delete this Band"%>
+  <% if (@band.user == current_user) %>
+    <%= button_to "Edit This Band", edit_band_path(@band), method: :get %>
+    <br>
+    <%= button_to "Create New Opening", new_opening_path(@band.id), method: :get  %>
+    <br>
+    <%= form_tag band_path(@band), method: :delete do %>
+      <%= submit_tag "Delete this Band"%>
+    <% end %>
   <% end %>
-<% end %>
+</div>
