@@ -9,13 +9,14 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= favicon_link_tag asset_path('favicon.ico') %>
   </head>
-
   <body>
     <header>
       <% if current_user %>
         <%= render "/layouts/navbar" %>
       <% end %>
-    </header>
-    <%= yield %>
+    </header >
+    <div class = "view-wrapper">
+      <%= yield %>
+    </div>
   </body>
 </html>

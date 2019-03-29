@@ -1,47 +1,47 @@
-<h1><%= @musician.name %></h1>
-<% if !!flash[:errors] %>
-  <% flash[:errors].each do |e| %>
-    <p style="color: red;" ><%= e %></p>
+<div class= "item">
+  <h1><%= @musician.name %></h1>
+  <% if !!flash[:errors] %>
+    <% flash[:errors].each do |e| %>
+      <p style="color: red;" ><%= e %></p>
+    <% end %>
   <% end %>
-<% end %>
-<p><em><%= @musician.print_instruments %></em></p>
-<div>
-  <%= image_tag @musician.image_url, size: "200x200", alt: "Musician Profile Picture" %>
-</div>
-<% if current_user == @musician.user %>
-  <%= link_to "Edit", edit_musician_path %>
-<% end %>
-<h3>(<%= @musician.availabiity %>)</h3>
-<h4>Message Me: <%= @musician.user.username %></h4>
-<ul>Plays:
-  <% @musician.genres.each do |genre| %>
-    <li><%= genre.name %></li>
+  <p><em><%= @musician.print_instruments %></em></p>
+  <div>
+    <%= image_tag @musician.image_url, size: "200x200", alt: "Musician Profile Picture" %>
+  </div>
+  <% if current_user == @musician.user %>
+    <%= link_to "Edit", edit_musician_path %>
   <% end %>
-</ul>
-<h4>Location: <%= @musician.location %></h4>
-<h4>My Bands:</h4>
-<% @musician.bands.each do |band| %>
-  <a href="/bands/<% band.id %>"
-      <div class="band-container">
-    <%= image_tag band.image_url, size: "100x100", alt: "Band Profile Picture" %>
-    <h5><%= band.name %></h5>
-    <h6><%= band.status.capitalize %></h6>
-      </div>
-  </a>
-<% end %>
-<% if current_user == @musician.user %>
-  <%= button_to "Create New Band", new_band_path, method: :get %>
-<% end %>
-<br>
-<h4>My Openings:</h4>
-<ul>
-  <% @musician.managed_openings.each do |opening| %>
-    <li><%= link_to opening.name, opening_path(opening) %></li>
-  <% end %></ul>
-<h4>Links:</h4>
-<div class="">
-  soundcloud, spotify, bandcamp, official website
+  <h3>(<%= @musician.availabiity %>)</h3>
+  <h4>Message Me: <%= @musician.user.username %></h4>
+  <ul>Plays:
+    <% @musician.genres.each do |genre| %>
+      <li><%= genre.name %></li>
+    <% end %>
+  </ul>
+  <h4>Location: <%= @musician.location %></h4>
+  <h4>My Bands:</h4>
+  <% @musician.bands.each do |band| %>
+    <a href="/bands/<%= band.id %>">
+      <%= image_tag band.image_url, size: "100x100", alt: "Band Profile Picture" %>
+      <h5><%= band.name %></h5>
+      <h6><%= band.status.capitalize %></h6>
+    </a>
+  <% end %>
+  <% if current_user == @musician.user %>
+    <%= button_to "Create New Band", new_band_path, method: :get %>
+  <% end %>
+  <br>
+  <h4>My Openings:</h4>
+  <ul>
+    <% @musician.managed_openings.each do |opening| %>
+      <li><%= link_to opening.name, opening_path(opening) %></li>
+    <% end %></ul>
+  <h4>Links:</h4>
+  <div class="">
+    soundcloud, spotify, bandcamp, official website
+  </div>
+  <% if current_user.musician != @musician %>
+    <%= button_to "Recruit This Musician", new_request_path, method: :get, params: {"musician" => @musician.id} %>
+  <% end %>
 </div>
-<% if current_user.musician != @musician %>
-  <%= button_to "Recruit This Musician", new_request_path, method: :get, params: {"musician" => @musician.id} %>
-<% end %>

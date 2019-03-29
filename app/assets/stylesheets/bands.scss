@@ -7,4 +7,57 @@ body, html {
   background-image: url("/assets/bg-bands.jpg");
   background-size: cover;
   background-repeat: no-repeat;
+.view-wrapper {
+  background: rgba(255, 131, 0, 0.75);
+  color: white;
+  padding-top: 2em;
+  height: 100%;
+  min-height: 100vh;
+
+  padding-bottom: 10em;
+}
+
+.item {
+  display: inline-block;
+  background: #343a40b0;
+  padding: 0.3em;
+  margin-left: 1em;
+  margin-top: 1em;
+  border-radius: 25px;
+}
+.index {
+  display: grid;
+  grid-template-columns: auto auto auto;
+}
+h1 {
+  padding-left: 1.5em;
+}
+a {
+  color: white;
+  font-size: 1.5em;
+}
+
+a > strong {
+  font-size: 1.75em;
+}
+.index-item {
+  display: inline-grid;
+  text-align: center;
+  background: #343a40b0;
+  padding: 1em;
+  margin-left: 1em;
+  margin-right: 1em;
+  margin-top: 1em;
+  border-radius: 25px;
+}
+index-item-title {
+  height: 40%;
+}
+index-item-content {
+  height: 60%;
+}
+.index-image {
+  padding: 0.5em;
+  height: 10em;
+  width: 90%;
 }

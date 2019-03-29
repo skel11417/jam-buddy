@@ -1,5 +1,6 @@
 class RequestsController < ApplicationController
   before_action :configure, only: :new
+  before_action :sanitize
 
   def new
     @request = Request.new
@@ -42,6 +43,10 @@ class RequestsController < ApplicationController
 
   private
 
+  def sanitize
+    Request.sanitize_requests
+  end
+
   def get_request
     @request = Request.find(params[:id])
   end
@@ -52,7 +57,7 @@ class RequestsController < ApplicationController
       exit_path = !!@musician ? musician_path(@musician) : musician_path(@request.musician_id)
       return exit_path
     else
-      exit_path = !!@opening ? opening_path(@opening) : opening_path(@request.opening_id)
+      exit_path = !!@opening ? band_path(@opening.band) : band_path(@request.opening.band_id)
       return exit_path
     end
   end

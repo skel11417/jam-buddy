@@ -4,9 +4,13 @@ class SessionsController < ApplicationController
   def create
     @user = User.find_by(username: params[:username])
     if @user
-      return head(:forbidden) unless @user.authenticate(params[:password])
-      session[:user_id] = @user.id
-      redirect_to user_path(@user)
+      if @user.authenticate(params[:password])
+        session[:user_id] = @user.id
+        redirect_to user_path(@user)
+      else
+        flash[:errors] = ["Invalid Username/Password"]
+        redirect_to musicians_path
+      end
     else
       flash[:notice] = "The user does not exist"
       redirect_to login_path
@@ -18,3 +22,5 @@ class SessionsController < ApplicationController
     redirect_to login_path
   end
 end
+
+#  return head(:forbidden) unless

@@ -1,5 +1,17 @@
-<h1>All bands</h1>
-<ul><% @bands.each do |band| %>
-    <li><%= link_to band.name, band_path(band.id) %></li>
-  <% end %>
-</ul>
+<div class = "index-wrapper">
+  <div class = "index"><% @bands.each do |band| %>
+      <div class = "index-item">
+        <a href= "<%= band_path(band.id) %>">
+          <div class = "index-item-title">
+            <strong><%= band.name %></strong> <br>
+          </div>
+          <div class = "index-item-content">
+            <img src="<%=band.image_url%>" alt="Image Not Available" class = "index-image"><br>
+            <em><%= band.location %> </em><br>
+            <em><%= band.print_genres %></em>
+          </div>
+        </a>
+      </div>
+    <% end %>
+  </div>
+</div>

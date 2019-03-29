@@ -14,6 +14,14 @@ class Opening < ApplicationRecord
     end
   end
 
+  def self.sanitize_openings
+    orphans = Opening.all.select do |o|
+      Band.find_by(id: o.band_id) == nil
+    end.each do |orphan|
+      Opening.destroy(orphan.id)
+    end
+  end
+
   def name
     "#{self.band.name}: #{self.instrument.name}"
   end
