@@ -57,6 +57,6 @@ class UsersController < ApplicationController
   end
 
   def new_user_params
-    params.require(:user).permit(:username, :password, :musician_attributes => [:name, :location, :availabiity, genre_ids: [], instrument_ids: []])
+    params.require(:user).permit(:username, :password, :musician_attributes => [:name, :location, :availabiity, :genre_ids, :instrument_ids])
   end
 end

@@ -53,12 +53,11 @@
 
                 <%= m.label :instrument_ids, "What's your primary instrument? (You can add more later)" %>
 
-                <%= m.collection_select :instrument_ids, Instrument.all, :id, :name, {}, {:class=>"custom-select", :multiple=>"true", :size=>3} %>
+                <%= m.collection_select :instrument_ids, Instrument.all, :id, :name, {}, {:class=>"custom-select", :size=>3} %>
 
               <!-- Genre -->
               <%= m.label :genre_ids, "What's your primary genre? (You can add more later)" %>
-              <%= m.collection_select :genre_ids, Genre.all, :id, :name, {}, {:class=>"custom-select auto-width", :multiple=>"true", :size=>3} %>
-
+              <%= m.collection_select :genre_ids, Genre.all, :id, :name, {}, {:class=>"custom-select auto-width", :size=>3} %>
               <% end %>
 
               <%= f.submit "Create your account", :class=>"btn justify-center login_btn" %>
