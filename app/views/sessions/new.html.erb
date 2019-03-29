@@ -1,24 +1,44 @@
-<h1>Kenny Login's page</h1>
+<!-- Stripped-down Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="/">
+    <img src="/assets/favicon-32x32.png" width="30" height="30" class="d-inline-block align-top" alt="">  JamBuddy</a>
+</nav>
+<div id="login" class="card float-right">
+  <div class="card-header">
+    <h1>Kenny Login's page</h1>
+  </div>
+  <!-- Card Body -->
+  <div class="card-body">
+    <%= form_tag login_path do %>
+    <div class="form-group">
+      <div class="row">
+      <%= label_tag :username, "Username", class: "col-sm-3" %>
+      <div class="col-sm-9">
+        <%= text_field_tag :username, nil, class: "form-control" %>
+      </div>
+    </div>
 
-<div class="login">
-  <%= form_tag login_path do %>
-  <%= label_tag :username, "Username" %>
-  <%= text_field_tag :username %><br>
-  <%= label_tag :password %>
-  <%= password_field_tag :password %>
-  <%= submit_tag "Danger Zone" %>
-  <% end %>
-</div>
-<div class="">
+    <div class="form-group">
+      <div class="row">
+      <%= label_tag :password, "Password", class: "col-sm-3" %>
+      <div class="col-sm-9">
+        <%= password_field_tag :password, nil, class: "form-control" %>
+      </div>
+      </div>
+    <%= submit_tag "Login", :class=>"login_btn" %>
+    <% end %>
+    </div>
+  </div>
+<div class="card-footer">
   Not a member yet?
-</div>
-<div>Enter your name and email to get started:</div>
-<div class="login">
+<div>Enter your name and email to get started: </div>
   <%= form_tag '/new_user', method: 'post' do %>
     <%= label_tag(:name, "Your Name") %>
     <%= text_field_tag(:name) %><br>
     <%= label_tag(:username, "Your email") %>
     <%= email_field_tag(:username) %>
-    <%= submit_tag("Go!") %>
+    <%= submit_tag("Danger Zone!", :class=>"login_btn") %>
   <% end %>
+</div>
+<!-- Close Card -->
 </div>

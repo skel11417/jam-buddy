@@ -36,6 +36,7 @@ class UsersController < ApplicationController
   end
 
   def create
+    # byebug
     @user = User.create(new_user_params)
     if @user.valid?
       session[:user_id] = @user.id
@@ -56,6 +57,6 @@ class UsersController < ApplicationController
   end
 
   def new_user_params
-    params.require(:user).permit(:username, :password, :musician_attributes => [:name, :location, :availabiity, :genre_ids, :instrument_ids])
+    params.require(:user).permit(:username, :password, :musician_attributes => [:name, :location, :availabiity, genre_ids: [], instrument_ids: []])
   end
 end
