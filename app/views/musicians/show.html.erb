@@ -26,10 +26,12 @@
     <%= image_tag band.image_url, size: "100x100", alt: "Band Profile Picture" %>
     <h5><%= band.name %></h5>
     <h6><%= band.status.capitalize %></h6>
-  </div>
-</a>
+      </div>
+  </a>
 <% end %>
-<%= button_to "Create New Band", new_band_path, method: :get %>
+<% if current_user == @musician.user %>
+  <%= button_to "Create New Band", new_band_path, method: :get %>
+<% end %>
 <br>
 <h4>My Openings:</h4>
 <ul>

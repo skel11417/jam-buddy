@@ -1,20 +1,76 @@
-<h1>Welcome, <%= @name %>!</h1>
+<!-- Stripped-down Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="/">
+    <img src="/assets/favicon-32x32.png" width="30" height="30" class="d-inline-block align-top" alt="">  JamBuddy</a>
+</nav>
 
-<%= form_for @user do |f| %>
-<%= f.label :username, "Username" %>
-<%= f.text_field :username, :readonly => true, :value => session[:username] %><br>
-<%= f.label :password, "Password" %>
-<%= f.password_field :password %><br>
-<%= f.fields_for :musician_attributes, @user.build_musician do |m| %>
-  <%= m.hidden_field :name, :value => "#{@name}" %>
-  <%= m.label :location, "Your location" %>
-  <%= m.text_field :location %><br>
-  <%= m.label :availabiity, "What are you looking for?" %>
-  <%= m.collection_select :availabiity, ["single gigs", "jams", "full-time band", "part-time band", "session_work"], :to_s, :to_s %><br>
-  <%= m.label :genre_ids, "What's your primary genre? (You can add more later)" %>
-  <%= m.collection_select :genre_ids, Genre.all, :id, :name %><br>
-  <%= m.label :instrument_ids, "What's your primary instrument? (You can add more later)" %>
-  <%= m.collection_select :instrument_ids, Instrument.all, :id, :name %>
-  <% end %>
-<%= f.submit "Create your account" %>
-<% end %>
+<div class="bg">
+<!-- Main Container -->
+  <div class="container">
+    <div class="d-flex justify-content-center h-100">
+      <!-- Card -->
+      <div class="card">
+        <!-- Card Header -->
+        <div class="card-header">
+          <h1>Welcome, <%= @name %>!</h1>
+        </div>
+        <!-- Card Body -->
+        <div class="card-body">
+          <%= form_for @user do |f| %>
+            <!-- username row -->
+            <div class="form-group row">
+              <%= f.label :username, "Username", :class => "col-sm-3 col-form-label" %>
+              <div class="col-sm-9">
+                <%= f.text_field :username, :readonly => true, :value => session[:username] %><br>
+              </div>
+            </div>
+            <!-- password row -->
+            <div class="form-group row">
+              <%= f.label :password, "Password", :class => "col-sm-3 col-form-label" %>
+              <div class="col-sm-9">
+                <%= f.password_field :password %><br>
+              </div>
+            </div>
+
+            <%= f.fields_for :musician_attributes, @user.build_musician do |m| %>
+              <%= m.hidden_field :name, :value => "#{@name}" %>
+
+              <!-- location row -->
+              <div class="form-group row">
+                <%= m.label :location, "Location", :class => "col-sm-3 col-form-label" %>
+                <div class="col-sm-9">
+                  <%= m.text_field :location %><br>
+                </div>
+              </div>
+              <!-- availability -->
+              <div class="form-group row">
+                <%= m.label :availabiity, "What's your availabiity?", :class => "col-sm-3 col-form-label" %>
+                <div class="col-sm-9">
+                  <%= m.collection_select :availabiity, ["single gigs", "jams", "full-time band", "part-time band", "session_work"], :to_s, :to_s, {}, {:class=>"custom-select auto_width"} %>
+                </div>
+              </div>
+              <!-- Instrument -->
+
+                <%= m.label :instrument_ids, "What's your primary instrument? (You can add more later)" %>
+
+                <%= m.collection_select :instrument_ids, Instrument.all, :id, :name,{}, {:class=>"custom-select", :multiple=>"true", :size=>3} %>
+
+              <!-- Genre -->
+              <%= m.label :genre_ids, "What's your primary genre? (You can add more later)" %>
+              <%= m.collection_select :genre_ids, Genre.all, :id, :name, {}, {:class=>"custom-select auto-width", :multiple=>"true", :size=>3} %>
+
+              <% end %>
+
+              <%= f.submit "Create your account", :class=>"btn justify-center login_btn" %>
+              <% end %>
+
+        <!-- Close Card Body -->
+        </div>
+      <!-- Close Card     -->
+      </div>
+    <!-- Close Justify Center div -->
+    </div>
+  <!-- Close Container -->
+  </div>
+<!-- close background -->
+</div>

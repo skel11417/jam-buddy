@@ -1,3 +1,48 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+body, html {
+  height: 100%;
+  // background-image: url("/assets/jb-bg.jpg");
+  // background-size: cover;
+  // background-repeat: no-repeat;
+}
+
+.card {
+  width: 500px;
+  margin-top: auto;
+  margin-bottom: auto;
+  height: auto;
+  background-color: rgba(0,0,0,0.8) !important;
+  color: white;
+}
+.card-header h3{
+color: white;
+}
+
+.login_btn{
+color: black;
+background-color: #FFC312;
+width: 200px;
+margin-top: 20px;
+}
+.auto_width {
+  width: auto;
+}
+
+.login_btn:hover{
+color: black;
+background-color: white;
+}
+
+.bg {
+  /* The image used */
+  background-image: url("/assets/jb-bg.jpg");
+
+  /* Full height */
+  height: 125%;
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
