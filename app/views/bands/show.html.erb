@@ -5,7 +5,7 @@ BASIC INFO
 
 %>
 <img src="<%= @band.image_url %>" alt="Photo Not Available"> <br>
-<p>Manager: <%= link_to @band.musician.name, musician_path(@band.musician_id) %></p>
+<p>Manager: <%= link_to "#{@band.musician.name} (#{@band.user.username})", musician_path(@band.musician_id) %></p>
 <p>Location: <%= @band.location %></p>
 <p>Genres: <% @band.genres.map do |g| %>
     <%= g.name %>

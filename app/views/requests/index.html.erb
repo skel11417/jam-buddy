@@ -1,4 +1,9 @@
 <h1>Notifications</h1>
+<% if !!flash[:errors] %>
+  <% flash[:errors].each do |e| %>
+    <p style="color: green;" ><%= e %></p>
+  <% end %>
+<% end %>
 <% if !!(@requests["musicians"]) %>
   <p>Bands Looking For You:</p>
   <ul>

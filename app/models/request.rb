@@ -33,13 +33,21 @@ class Request < ApplicationRecord
     return notification
   end
 
+  def inverse_request
+    Request.where("musician_id = ? AND opening_id = ? AND user_id IS NOT ?", self.musician_id, self.opening_id, self.user_id).first
+  end
+
   private
 
   def is_not_duplicate?
-    errors.add(:user_id, ": You have already made this request!") unless Request.where(user_id: self.user_id, musician_id: musician_id, opening_id: opening_id).length == 0
+    errors.add(:base, ": You have already made this request!") unless Request.where(user_id: self.user_id, musician_id: musician_id, opening_id: opening_id).length == 0
   end
 
   def is_not_inverse?
-    errors.add(:user_id, ": This user has already requested you! Check your notifications") unless Request.where("musician_id = ? AND opening_id = ? AND user_id IS NOT ?", self.musician_id, self.opening_id, self.user_id).length == 0
+    if (Request.where("musician_id = ? AND opening_id = ? AND user_id IS NOT ?", self.musician_id, self.opening_id, self.user_id).length > 0)
+      errors.add(:base, ": This user has already requested you!")
+    else
+      return true
+    end
   end
 end

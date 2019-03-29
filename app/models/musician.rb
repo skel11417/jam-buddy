@@ -38,7 +38,7 @@ class Musician < ApplicationRecord
       instruments = band.openings.map { |b| b.instrument }
 
       suggest = Musician.all.select do |musician|
-        musician.location == location && (musician.instruments & instruments).length > 0
+        musician.user_id != user_id && musician.location == location && (musician.instruments & instruments).length > 0
       end
       suggested.concat(suggest)
     end

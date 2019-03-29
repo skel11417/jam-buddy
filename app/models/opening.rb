@@ -25,10 +25,10 @@ class Opening < ApplicationRecord
     #location match
     #availability match
     location_match = self.all.select do |opening|
-      user_musician.location == opening.band.location
+      user_musician.location == opening.band.location && user_id != opening.user.id
     end
     instrument_match = self.all.select do |opening|
-      user_musician.instruments.include?(opening.instrument)
+      user_musician.instruments.include?(opening.instrument) && user_id != opening.user.id
     end
     best_match = location_match & instrument_match
 

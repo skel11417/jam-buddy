@@ -12,13 +12,23 @@ class RequestsController < ApplicationController
 
   def create
     @request = Request.new(get_params)
-    if (@request.valid?)
+    if inverse_redirect(@request)
+      redirect_to requests_path
+    elsif (@request.valid?)
       @request.save
       redirect_to requested_path
     else
       flash[:errors] = @request.errors.full_messages
       redirect_to requested_path
     end
+  end
+
+  def inverse_redirect(request)
+    if (!!request.inverse_request)
+      flash[:errors] = ["This user has already requested you!"]
+      return true
+    end
+    return false
   end
 
   def show
