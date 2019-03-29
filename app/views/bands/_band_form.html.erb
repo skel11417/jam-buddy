@@ -1,17 +1,19 @@
-<% if flash[:errors] then flash[:errors].each do |error| %>
-  <p><%= error %></p>
-<% end end %>
-<%= form_for @band do |f|%>
-  <%= f.hidden_field :musician_id, value: @band.musician.id %>
-  <%= f.hidden_field :image_url, value: '/assets/default_band.png' %>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
-  <%= f.label :location %>
-  <%= f.text_field :location %>
-  <%= f.label :status %>
-  <%= f.select :status,  ["single gigs", "jams", "full-time band", "part-time band", "session work"] %>
-  <%= f.collection_check_boxes :genre_ids, Genre.all, :id, :name %>
-  <%= f.label :link %>
-  <%= f.text_field :link %>
-  <%= f.submit %>
-<% end %>
+<div class = "item">
+  <% if flash[:errors] then flash[:errors].each do |error| %>
+    <p><%= error %></p>
+  <% end end %>
+  <%= form_for @band do |f|%>
+    <%= f.hidden_field :musician_id, value: @band.musician.id %>
+    <%= f.hidden_field :image_url, value: '/assets/default_band.png' %>
+    <%= f.label :name %>
+    <%= f.text_field :name %> <br>
+    <%= f.label :location %>
+    <%= f.text_field :location %> <br>
+    <%= f.label :status %>
+    <%= f.select :status,  ["single gigs", "jams", "full-time band", "part-time band", "session work"] %> <br>
+    <%= f.collection_check_boxes :genre_ids, Genre.all, :id, :name %> <br>
+    <%= f.label :link %>
+    <%= f.text_field :link %> <br>
+    <%= f.submit %>
+  <% end %>
+</div>

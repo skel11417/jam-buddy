@@ -1,21 +1,23 @@
-<h1>Wanted: </h1>
-<% if flash[:errors] %>
-  <% flash[:errors].each do |e| %>
-    <p style="color: red;" ><%= e %></p>
+<div class = "item">
+  <h1>Wanted: </h1>
+  <% if flash[:errors] %>
+    <% flash[:errors].each do |e| %>
+      <p style="color: red;" ><%= e %></p>
+    <% end %>
   <% end %>
-<% end %>
-<p>Band: <%= link_to @opening.band.name, band_path(@opening.band) %></p>
-<p>Role: <%= @opening.instrument.name %></p>
-<p>Commitment: <%= @opening.commitment %></p>
-<p>Description: <%= @opening.description %></p>
-<%# USER OPTIONS %>
-<% if current_user == @opening.user %>
-  <%= button_to "Edit Opening", edit_opening_path(@opening), method: :get %>
-  <%= form_tag opening_path(@opening), method: :delete do  %>
-    <%= submit_tag "Remove Opening" %>
+  <p>Band: <%= link_to @opening.band.name, band_path(@opening.band) %></p>
+  <p>Role: <%= @opening.instrument.name %></p>
+  <p>Commitment: <%= @opening.commitment %></p>
+  <p>Description: <%= @opening.description %></p>
+  <%# USER OPTIONS %>
+  <% if current_user == @opening.user %>
+    <%= button_to "Edit Opening", edit_opening_path(@opening), method: :get %>
+    <%= form_tag opening_path(@opening), method: :delete do  %>
+      <%= submit_tag "Remove Opening" %>
+    <% end %>
+  <% else %>
+    <%= button_to "Apply For This Opening", new_request_path, method: :get, params: {"opening" => @opening.id} %>
   <% end %>
-<% else %>
-  <%= button_to "Apply For This Opening", new_request_path, method: :get, params: {"opening" => @opening.id} %>
-<% end %>
+</div>
 <%# MUSICIAN OPTIONS %>
 <%# APPLY %>

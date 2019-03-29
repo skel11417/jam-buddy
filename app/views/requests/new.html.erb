@@ -1,17 +1,19 @@
-<h1>Request for <%= @requested.name %></h1>
-<%= form_for @request do |f| %>
-  <%= f.hidden_field :musician_status, value: @musician_status %>
-  <%= f.hidden_field :band_status, value: @band_status %>
-  <%= f.hidden_field :musician_id, value: @musician.id %>
-  <%= f.hidden_field :user_id, value: @requested.user.id %>
-  <%= f.hidden_field :read, value: false %>
-  <% if @requester == "opening" %>
-    <%= f.label :opening_id, "For Which Opening?" %>
-    <%= f.collection_select :opening_id, current_user.musician.managed_openings, :id, :name %>
-  <% else %>
-    <%= f.hidden_field :opening_id, value: @opening.id %>
+<div class = "item">
+  <h1>Request for <%= @requested.name %></h1>
+  <%= form_for @request do |f| %>
+    <%= f.hidden_field :musician_status, value: @musician_status %>
+    <%= f.hidden_field :band_status, value: @band_status %>
+    <%= f.hidden_field :musician_id, value: @musician.id %>
+    <%= f.hidden_field :user_id, value: @requested.user.id %>
+    <%= f.hidden_field :read, value: false %>
+    <% if @requester == "opening" %>
+      <%= f.label :opening_id, "For Which Opening?" %>
+      <%= f.collection_select :opening_id, current_user.musician.managed_openings, :id, :name %> <br>
+    <% else %>
+      <%= f.hidden_field :opening_id, value: @opening.id %>
+    <% end %>
+    <% f.label :message, "Message (Optional)" %>
+    <%= f.text_area :message %> <br>
+    <%= f.submit "Request"%>
   <% end %>
-  <% f.label :message, "Message (Optional)" %>
-  <%= f.text_area :message %>
-  <%= f.submit "Request"%>
-<% end %>
+</div>

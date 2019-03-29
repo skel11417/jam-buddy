@@ -1,4 +1,4 @@
-<h1>Suggested Musicians</h1>
+<h1 class = "item">Suggested Musicians</h1>
 <% if @musicians.length > 0 %>
   <div class = "index">
     <% @musicians.each do |musician| %>
@@ -19,7 +19,7 @@
   <h4 class = "item">There are no suggested musicians in your area</h4>
 <% end %>
 <br>
-<h1>Suggested Openings</h1>
+<h1 class = "item">Suggested Openings</h1>
 <% if @openings.length > 0 %>
   <div class = "index"><% @openings.each do |opening| %>
       <div class = "index-item">
@@ -30,5 +30,5 @@
       <% end %>
     </div>
   <% else %>
-    <h4>There are no suggested openings in your area</h4>
+    <h4 class = "item">There are no suggested openings in your area</h4>
   <% end %>

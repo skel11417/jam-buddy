@@ -2,7 +2,8 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-body, html {
+body,
+html {
   height: 100%;
   background-image: url("/assets/bg-bands.jpg");
   background-size: cover;
@@ -22,7 +23,7 @@ body, html {
 .item {
   display: inline-block;
   background: #343a40b0;
-  padding: 0.3em;
+  padding: 1em;
   margin-left: 1em;
   margin-top: 1em;
   border-radius: 25px;
@@ -36,7 +37,7 @@ h1 {
   padding-left: 1.5em;
 }
 a {
-  color: white;
+  color: rgb(125, 125, 243);
   font-size: 1.5em;
 }
 
@@ -52,6 +53,7 @@ a > strong {
   margin-right: 1em;
   margin-top: 1em;
   border-radius: 25px;
+  color: white;
 }
 index-item-title {
   height: 40%;

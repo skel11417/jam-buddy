@@ -3,10 +3,14 @@
     <p style="color: green;" ><%= e %></p>
   <% end %>
 <% end %>
+<% if @requests["musicians"].length == 0 &&  @requests["openings"].length == 0 %>
+  <h3 class = "item">You Have No Notifications</h3>
+<% end %>
 <% if !!(@requests["musicians"]&& @requests["musicians"].length > 0) %>
   <div class = "index" >
     <% @requests["musicians"].each do |request| %>
-      <div class = "index-item"><%= link_to request.opening.name, opening_path(request.opening_id) %>
+      <div class = "index-item">
+        <%= link_to "#{request.opening.band.name} Wants You To Play #{request.opening.instrument.name}", opening_path(request.opening_id) %>
         <p><%= request.message %></p>
         <%= form_tag request_path(request), method: :delete do %>
           <%= submit_tag "Remove This Request" %>
@@ -18,7 +22,11 @@
 <% if !!(@requests["openings"] && @requests["openings"].length > 0) %>
   <div class = "index">
     <% @requests["openings"].each do |request| %>
-      <div class = "index-item"><%= link_to "#{request.musician.name} (#{request.opening.name})", musician_path(request.musician_id) %>
+      <div class = "index-item">
+        <%= link_to "#{request.musician.name} Wants To Play #{request.opening.instrument.name}", musician_path(request.musician_id) %>
+        <strong>
+          <p>Band: <%= request.opening.band.name %></p>
+        </strong>
         <p><%= request.message %></p>
         <%= form_tag request_path(request), method: :delete do %>
           <%= submit_tag "Remove This Request" %>
