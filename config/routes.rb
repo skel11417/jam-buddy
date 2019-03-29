@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   resources :musicians, only: [:show, :index, :edit, :update]
   get "users/suggest", to: "users#suggest", as: "suggest"
   resources :users, except: [:index]
-  resources :requests, only: [:show, :new, :create, :index]
+  resources :requests, only: [:show, :new, :create, :index, :destroy]
 
   post "/new_user", to: "users#form_1"
   get "/", to: "users#show", as: "dashboard"

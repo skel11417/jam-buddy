@@ -9,6 +9,7 @@
   <ul>
     <% @requests["musicians"].each do |request| %>
       <li><%= link_to request.opening.name, opening_path(request.opening_id) %>
+        <p><%= request.message %></p>
         <%= form_tag request_path(request), method: :delete do %>
           <%= submit_tag "Remove This Request" %>
         <% end %>
@@ -21,6 +22,7 @@
   <ul>
     <% @requests["openings"].each do |request| %>
       <li><%= link_to "#{request.musician.name} (#{request.opening.name})", musician_path(request.musician_id) %>
+        <p><%= request.message %></p>
         <%= form_tag request_path(request), method: :delete do %>
           <%= submit_tag "Remove This Request" %>
         <% end %>

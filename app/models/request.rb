@@ -13,6 +13,14 @@ class Request < ApplicationRecord
     end
   end
 
+  def self.sanitize_requests
+    orphans = Request.all.select do |r|
+      Opening.find_by(id: r.opening_id) == nil || Musician.find_by(id: r.musician_id) == nil
+    end.each do |orphan|
+      Request.destroy(orphan.id)
+    end
+  end
+
   def self.sort_requests(user_id)
     all_requests = Request.where(user_id: user_id)
 
